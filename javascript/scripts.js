@@ -51,6 +51,8 @@ function playAgain() {
   document.getElementById('playAgain').classList.add('playAgainShow');
   checkWinner();
   document.getElementById('playAgain').onclick = () => {
+    document.getElementById('leftCup').classList.remove('shake');
+    document.getElementById('rightCup').classList.remove('shake');
     location.reload();
     return false;
   }
