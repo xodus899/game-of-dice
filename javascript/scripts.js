@@ -8,10 +8,12 @@ let button2False = false;
 
 function diceOneImg() {
     let randomImage1 = document.querySelector('.img1').setAttribute("src", images[randomNumber1]);
+    document.getElementById('leftCup').classList.add('shake');
 }
 
 function diceTwoImg() {
     let randomImage2 = document.querySelector('.img2').setAttribute("src", images[randomNumber2]);
+    document.getElementById('leftCup').classList.add('shake');
 }
 
 function setImage() {
