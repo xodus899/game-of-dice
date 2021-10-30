@@ -1,0 +1,73 @@
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.dice {
+  text-align: center;
+  display: inline-block;
+
+}
+
+body {
+  background-color: #393E46;
+}
+
+h1 {
+  margin: 30px;
+  font-family: 'Lobster', cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 8rem;
+  color: #4ECCA3;
+}
+
+p {
+  font-size: 2rem;
+  color: #4ECCA3;
+  font-family: 'Indie Flower', cursive;
+}
+
+img {
+  width:80%;
+}
+
+button#playAgain {
+  margin:0 auto;
+  display:block;
+}
+
+#player1Btn,#player2Btn,#playAgain {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: 'Lobster', cursive;
+  color: #393E46;
+  font-size: 20px;
+  background: #4ECCA3;
+  padding: 10px 20px 10px 20px;
+  border: solid #393E46 1px;
+  text-decoration: none;
+  box-shadow: 1px 1px #4ecca3;
+  cursor: pointer;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.playAgain {
+  visibility: hidden;
+}
+
+.playAgainShow {
+  visibility: visible;
+}
+
+footer {
+  margin-top: 5%;
+  color: #EEEEEE;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+
+}
