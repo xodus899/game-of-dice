@@ -71,3 +71,16 @@ footer {
   font-family: 'Indie Flower', cursive;
 
 }
+
+
+@media only screen and (max-width: 420px) {
+  img {
+    width:50%;
+  }
+  p {
+    font-size:1rem;
+  }
+  h1 {
+    font-size:2rem;
+  }
+}
