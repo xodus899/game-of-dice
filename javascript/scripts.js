@@ -13,7 +13,7 @@ function diceOneImg() {
 
 function diceTwoImg() {
     let randomImage2 = document.querySelector('.img2').setAttribute("src", images[randomNumber2]);
-    document.getElementById('leftCup').classList.add('shake');
+    document.getElementById('rightCup').classList.add('shake');
 }
 
 function setImage() {
