@@ -1,71 +1,89 @@
-let images = ['images/dice1.png','images/dice2.png','images/dice3.png','images/dice4.png','images/dice5.png','images/dice6.png'];
-let randomNumber1 = Math.floor(Math.random()* images.length);
-let randomNumber2 = Math.floor(Math.random()* images.length);
-let button1 = document.getElementById('player1Btn');
-let button2 = document.getElementById('player2Btn');
-let button1False = false;
-let button2False = false;
+const images = ['images/dice1.png','images/dice2.png','images/dice3.png','images/dice4.png','images/dice5.png','images/dice6.png'];
+const randomNumber1 = Math.floor(Math.random()* images.length);
+const randomNumber2 = Math.floor(Math.random()* images.length);
 
-function diceOneImg() {
-    let randomImage1 = document.querySelector('.img1').setAttribute("src", images[randomNumber1]);
-    document.getElementById('leftCup').classList.add('shake');
+function diceOneImg(num) {
+    document.querySelector('.img1').setAttribute("src", images[num]);
+    document.querySelector('#leftCup').classList.add('shake');
 }
-
-function diceTwoImg() {
-    let randomImage2 = document.querySelector('.img2').setAttribute("src", images[randomNumber2]);
-    document.getElementById('rightCup').classList.add('shake');
+function diceTwoImg(num) {
+    document.querySelector('.img2').setAttribute("src", images[num]);
+    document.querySelector('#rightCup').classList.add('shake');
 }
-
-function setImage() {
-  return listenForClick();
-}
-
 function listenForClick() {
-  button1.addEventListener("click", () => {
-    diceOneImg();
-  })
-  button2.addEventListener("click", () => {
-    diceTwoImg();
+  const playerButton1 = document.querySelector('.player1Btn');
+  const playerButton2 = document.querySelector('.player2Btn');
+  playerButton1.addEventListener("click", (event) => {
+    event.preventDefault();
+    diceOneImg(randomNumber1);
+    
   });
-  removeButtons();
+  playerButton2.addEventListener("click", (event) => {
+    event.preventDefault();
+    diceTwoImg(randomNumber2);
+  });
+  removeButtons(playerButton1,playerButton2);
 }
 
-function removeButtons() {
-  button1False = false;
-  secondButtonClicked = false;
+function removeButtons(button1,button2) {
+  let button1False = false;
+  let button2False = false;
 
-  button1.addEventListener('click',()=>{
+  button1.addEventListener('click', () => {
     button1.style.visibility = 'hidden';
-    button1False = true
-    if(button1False && button2False) playAgain()
-  })
-  button2.addEventListener('click',()=>{
+    button1False = true;
+    if(button1False && button2False) {
+      playAgain();
+    }
+  });
+  button2.addEventListener('click', () => {
     button2.style.visibility = 'hidden';
-    button2False = true
-    if(button1False && button2False) playAgain()
-  })
-  document.getElementById('playAgain').classList.add('playAgain');
+    button2False = true;
+    if(button1False && button2False){
+      playAgain();
+    }
+  });
+  document.querySelector('#playAgain').classList.add('playAgain');
 }
 
-function playAgain() {
-  document.getElementById('playAgain').classList.add('playAgainShow');
-  checkWinner();
-  document.getElementById('playAgain').onclick = () => {
-    document.getElementById('leftCup').classList.remove('shake');
-    document.getElementById('rightCup').classList.remove('shake');
-    location.reload();
-    return false;
-  }
+function updateDiv() {
+  document.body.innerHTML = " ";
+  document.body.insertAdjacentHTML("afterbegin", `
+    <div class="container">
+      <h1 class="refresh-btn">Roll The Dice</h1>
+      <div class="dice">
+        <p>Player 1</p>
+          <img id='leftCup'class="img1" src="images/cupRight.png">
+          <button class='player1Btn'> Roll Player 1 </button>
+      </div>
+
+      <div class="dice">
+        <p>Player 2</p>
+        <img id='rightCup'class="img2" src="images/cupLeft.png">
+        <button class='player2Btn'> Roll Player 2 </button>
+      </div>
+    <button id='playAgain'> Play Again? </button>
+    </div>`);
+  listenForClick();
 }
 
-function checkWinner() {
+function checkWinner(randomNumber2,randomNumber1) {
   if(randomNumber2 === randomNumber1) {
     document.querySelector('h1').innerHTML ="Draw";
   } else if (randomNumber2 < randomNumber1) {
-    document.querySelector('h1').innerHTML ="Player 1 wins"
+    document.querySelector('h1').innerHTML ="Player 1 wins";
   } else {
     document.querySelector('h1').innerHTML = "Player 2 wins";
   }
 }
+function playAgain() {
+  document.querySelector('#playAgain').classList.add('playAgainShow');
+  document.querySelector('#playAgain').onclick = () => {
+    document.querySelector('#leftCup').classList.remove('shake');
+    document.querySelector('#rightCup').classList.remove('shake');
+    updateDiv();
+  };
+  checkWinner(randomNumber2,randomNumber1);
+}
+listenForClick();
 
-setImage();

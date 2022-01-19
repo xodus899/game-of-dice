@@ -59,7 +59,7 @@ button#playAgain {
   display:block;
 }
 
-#player1Btn,#player2Btn,#playAgain {
+.player1Btn,.player2Btn,#playAgain {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
