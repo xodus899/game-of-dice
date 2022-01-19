@@ -1,6 +1,4 @@
 const images = ['images/dice1.png','images/dice2.png','images/dice3.png','images/dice4.png','images/dice5.png','images/dice6.png'];
-// const randomNumber1 = Math.floor(Math.random()* images.length);
-// const randomNumber2 = Math.floor(Math.random()* images.length);
 
 function diceOneImg(num) {
     document.querySelector('.img1').setAttribute("src", images[num]);
@@ -11,6 +9,8 @@ function diceTwoImg(num) {
     document.querySelector('#rightCup').classList.add('shake');
 }
 function listenForClick() {
+  let button1False = false;
+  let button2False = false;
   const randomNumber1 = Math.floor(Math.random()* images.length);
   const randomNumber2 = Math.floor(Math.random()* images.length);
   const playerButton1 = document.querySelector('.player1Btn');
@@ -18,11 +18,18 @@ function listenForClick() {
   playerButton1.addEventListener("click", (event) => {
     event.preventDefault();
     diceOneImg(randomNumber1);
-    
+    button1False = true;
+    if(button1False && button2False) {
+      checkWinner(randomNumber2,randomNumber1);
+    }
   });
   playerButton2.addEventListener("click", (event) => {
     event.preventDefault();
     diceTwoImg(randomNumber2);
+    button2False = true;
+    if(button1False && button2False) {
+      checkWinner(randomNumber2,randomNumber1);
+    }
   });
   removeButtons(playerButton1,playerButton2);
 }
@@ -72,6 +79,7 @@ function updateDiv() {
 function checkWinner(randomNumber2,randomNumber1) {
   if(randomNumber2 === randomNumber1) {
     document.querySelector('h1').innerHTML ="Draw";
+    console.log(randomNumber2,randomNumber1)
   } else if (randomNumber2 < randomNumber1) {
     document.querySelector('h1').innerHTML ="Player 1 wins";
   } else {
@@ -85,7 +93,6 @@ function playAgain() {
     document.querySelector('#rightCup').classList.remove('shake');
     updateDiv();
   };
-  checkWinner(randomNumber2,randomNumber1);
 }
 listenForClick();
 
