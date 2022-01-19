@@ -79,7 +79,6 @@ function updateDiv() {
 function checkWinner(randomNumber2,randomNumber1) {
   if(randomNumber2 === randomNumber1) {
     document.querySelector('h1').innerHTML ="Draw";
-    console.log(randomNumber2,randomNumber1)
   } else if (randomNumber2 < randomNumber1) {
     document.querySelector('h1').innerHTML ="Player 1 wins";
   } else {
