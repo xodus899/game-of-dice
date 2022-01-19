@@ -1,6 +1,6 @@
 const images = ['images/dice1.png','images/dice2.png','images/dice3.png','images/dice4.png','images/dice5.png','images/dice6.png'];
-const randomNumber1 = Math.floor(Math.random()* images.length);
-const randomNumber2 = Math.floor(Math.random()* images.length);
+// const randomNumber1 = Math.floor(Math.random()* images.length);
+// const randomNumber2 = Math.floor(Math.random()* images.length);
 
 function diceOneImg(num) {
     document.querySelector('.img1').setAttribute("src", images[num]);
@@ -11,6 +11,8 @@ function diceTwoImg(num) {
     document.querySelector('#rightCup').classList.add('shake');
 }
 function listenForClick() {
+  const randomNumber1 = Math.floor(Math.random()* images.length);
+  const randomNumber2 = Math.floor(Math.random()* images.length);
   const playerButton1 = document.querySelector('.player1Btn');
   const playerButton2 = document.querySelector('.player2Btn');
   playerButton1.addEventListener("click", (event) => {
