@@ -1,10 +1,10 @@
 const images = ['images/dice1.png','images/dice2.png','images/dice3.png','images/dice4.png','images/dice5.png','images/dice6.png'];
 
-function diceOneImg(num) {
+function generateDiceOneImg(num) {
     document.querySelector('.img1').setAttribute("src", images[num]);
     document.querySelector('#leftCup').classList.add('shake');
 }
-function diceTwoImg(num) {
+function generateDiceTwoImg(num) {
     document.querySelector('.img2').setAttribute("src", images[num]);
     document.querySelector('#rightCup').classList.add('shake');
 }
@@ -17,14 +17,14 @@ function listenForClick() {
 
   playerButton1.addEventListener("click", (event) => {
     hideButtons(event);
-    diceOneImg(randomNumber1);
+    generateDiceOneImg(randomNumber1);
     valueArr.push(event.target)
     checkLength(valueArr,randomNumber2,randomNumber1);
     event.preventDefault();
   });
   playerButton2.addEventListener("click", (event) => {
     hideButtons(event);
-    diceTwoImg(randomNumber2);
+    generateDiceTwoImg(randomNumber2);
     valueArr.push(event.target)
     checkLength(valueArr,randomNumber2,randomNumber1);
     event.preventDefault();
