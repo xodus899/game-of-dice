@@ -9,50 +9,38 @@ function diceTwoImg(num) {
     document.querySelector('#rightCup').classList.add('shake');
 }
 function listenForClick() {
-  let button1False = false;
-  let button2False = false;
   const randomNumber1 = Math.floor(Math.random()* images.length);
   const randomNumber2 = Math.floor(Math.random()* images.length);
   const playerButton1 = document.querySelector('.player1Btn');
   const playerButton2 = document.querySelector('.player2Btn');
+  const valueArr = [];
+
   playerButton1.addEventListener("click", (event) => {
-    event.preventDefault();
+    hideButtons(event);
     diceOneImg(randomNumber1);
-    button1False = true;
-    if(button1False && button2False) {
-      checkWinner(randomNumber2,randomNumber1);
-    }
+    valueArr.push(event.target)
+    checkLength(valueArr,randomNumber2,randomNumber1);
+    event.preventDefault();
   });
   playerButton2.addEventListener("click", (event) => {
-    event.preventDefault();
+    hideButtons(event);
     diceTwoImg(randomNumber2);
-    button2False = true;
-    if(button1False && button2False) {
-      checkWinner(randomNumber2,randomNumber1);
-    }
-  });
-  removeButtons(playerButton1,playerButton2);
-}
-
-function removeButtons(button1,button2) {
-  let button1False = false;
-  let button2False = false;
-
-  button1.addEventListener('click', () => {
-    button1.style.visibility = 'hidden';
-    button1False = true;
-    if(button1False && button2False) {
-      playAgain();
-    }
-  });
-  button2.addEventListener('click', () => {
-    button2.style.visibility = 'hidden';
-    button2False = true;
-    if(button1False && button2False){
-      playAgain();
-    }
+    valueArr.push(event.target)
+    checkLength(valueArr,randomNumber2,randomNumber1);
+    event.preventDefault();
   });
   document.querySelector('#playAgain').classList.add('playAgain');
+}
+
+function hideButtons(event) {
+  event.target.style.visibility = 'hidden';
+}
+
+function checkLength(arr, randomNumber2, randomNumber1) {
+  if(arr.length === 2) {
+    checkWinner(randomNumber2,randomNumber1);
+    playAgain();
+  }
 }
 
 function updateDiv() {
