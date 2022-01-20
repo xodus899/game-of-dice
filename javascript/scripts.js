@@ -18,14 +18,14 @@ function listenForClick() {
   playerButton1.addEventListener("click", (event) => {
     hideButtons(event);
     generateDiceOneImg(randomNumber1);
-    valueArr.push(event.target)
+    valueArr.push(event.target);
     checkLength(valueArr,randomNumber2,randomNumber1);
     event.preventDefault();
   });
   playerButton2.addEventListener("click", (event) => {
     hideButtons(event);
     generateDiceTwoImg(randomNumber2);
-    valueArr.push(event.target)
+    valueArr.push(event.target);
     checkLength(valueArr,randomNumber2,randomNumber1);
     event.preventDefault();
   });
